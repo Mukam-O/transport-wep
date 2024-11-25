@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import TheBurgerMenu from "~/components/TheBurgerMenu.vue";
+
 const fontSize = ref(16);
 const fontSize2 = ref(14);
 const padding = ref(20);
@@ -25,6 +27,10 @@ const router = useRouter();
 const goTime = (path: string) => {
   router.push(path);
 };
+const activeBurgerMenu = ref(false);
+const showBurgerMenu = () => {
+  activeBurgerMenu.value = !activeBurgerMenu.value;
+};
 </script>
 
 <template>
@@ -33,14 +39,17 @@ const goTime = (path: string) => {
       autoplay
       muted
       loop
-      src="../assets/video/Ludovico Einaudi - Experience (Live from Teatro dal Verme, Milano).mp4"
+      src="../assets/video/AWTOULAG-SRGI-(MONITOR)karta-duz.mp4"
     ></video>
+    <div @click="showBurgerMenu" class="header__burger">
+      <button class="home__burger-button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
     <div class="home__body">
-      <h2 class="home__title" :style="{ fontSize: `${fontSize}px` }">
-        Türkmenawtoulaglary Agentligi <br />
-        Halkara Transport geçelgeleri
-      </h2>
-      <div class="home__item-wrapper">
+      <div :class="['home__item-wrapper', { active: activeBurgerMenu }]">
         <div class="home__items">
           <button
             @click="router.push('/lapis')"
@@ -52,7 +61,7 @@ const goTime = (path: string) => {
           </button>
           <button
             class="home__item"
-            @click="router.push('/lapis2')"
+            @click="router.push('/agrament')"
             :style="{ fontSize: `${fontSize2}px`, padding: `${padding}px` }"
           >
             Aşgabat halkara ylalaşygy <br />
@@ -60,7 +69,7 @@ const goTime = (path: string) => {
           </button>
           <button
             class="home__item"
-            @click="router.push('/lapis3')"
+            @click="router.push('/nourth')"
             :style="{ fontSize: `${fontSize2}px`, padding: `${padding}px` }"
           >
             Aşgabat halkara ylalaşygy <br />
@@ -68,7 +77,7 @@ const goTime = (path: string) => {
           </button>
           <button
             class="home__item"
-            @click="router.push('/lapis4')"
+            @click="router.push('/traceca')"
             :style="{ fontSize: `${fontSize2}px`, padding: `${padding}px` }"
           >
             Ýewropa-kawkaz-Aziýa halkara <br />
@@ -76,7 +85,7 @@ const goTime = (path: string) => {
           </button>
           <button
             class="home__item"
-            @click="router.push('/lapis5')"
+            @click="router.push('/silk-way')"
             :style="{ fontSize: `${fontSize2}px`, padding: `${padding}px` }"
           >
             ýüpek ýoly halkara <br />
@@ -99,12 +108,12 @@ const goTime = (path: string) => {
   video {
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: 100vh;
   }
 
   &__title {
     position: absolute;
-    top: 10px;
+    top: 5px;
     left: 30%;
     font-size: 40px;
     font-weight: 900;
@@ -120,6 +129,12 @@ const goTime = (path: string) => {
     right: 20px;
     display: flex;
     justify-content: flex-end;
+    transform: translateX(150%);
+    transition: 0.3s;
+    &.active {
+      transform: translateX(0%);
+      transition: 0.3s;
+    }
   }
 
   &__items {
@@ -141,6 +156,30 @@ const goTime = (path: string) => {
     transition: 0.3s ease;
     &:hover {
       background: rgba(10, 113, 37, 0.8);
+    }
+  }
+
+  &__burger {
+    &-button {
+      top: 20px;
+      right: 50px;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid white;
+      padding: 7.57px 5.67px;
+      border-radius: 4px;
+      span {
+        display: block;
+        width: 40px;
+        height: 5px;
+        border-radius: 1.27px;
+        background: var(--white);
+        margin-bottom: 5px;
+        user-select: none;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }

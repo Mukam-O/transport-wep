@@ -7,7 +7,7 @@ const padding = ref(20);
 
 const updateFontSize = () => {
   const baseSize = 10;
-  const basePadding = 5;
+  const basePadding = 3;
   const scaleFactor = window.innerWidth / 600;
   fontSize.value = Math.max(baseSize * scaleFactor, 12);
   padding.value = Math.max(basePadding * scaleFactor, 10);
@@ -30,12 +30,7 @@ const goTime = (path: string) => {
 
 <template>
   <div class="lapiz">
-    <video
-      autoplay
-      muted
-      loop
-      src="../assets/video/Ludovico Einaudi - Experience (Live from Teatro dal Verme, Milano).mp4"
-    ></video>
+    <video autoplay muted loop src="../assets/video/LAPIS-LAZULI.mp4"></video>
     <div class="lapiz__body">
       <div class="lapiz__button-out">
         <button
@@ -43,16 +38,16 @@ const goTime = (path: string) => {
           class="lapiz__button-btn-out"
           :style="{ fontSize: `${fontSize}px`, padding: `${padding}px` }"
         >
-          <Guide /> çykmak
+          Prev
         </button>
       </div>
       <div class="lapiz__button-next">
         <button
-          @click="router.push('/lapis2')"
+          @click="router.push('/agrament')"
           class="lapiz__button-btn-next"
           :style="{ fontSize: `${fontSize}px`, padding: `${padding}px` }"
         >
-          <NextGuide /> indiki
+          Next
         </button>
       </div>
     </div>
@@ -66,6 +61,12 @@ const goTime = (path: string) => {
   width: 100%;
 
   &__body {
+    position: absolute;
+    top: 3%;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   video {
     object-fit: cover;
@@ -73,14 +74,10 @@ const goTime = (path: string) => {
     height: 100%;
   }
   &__button-out {
-    position: absolute;
-    top: 3%;
-    left: 20px;
   }
 
   &__button-btn-out {
     color: var(--white);
-    background: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     text-transform: uppercase;
     font-size: 20px;
@@ -89,14 +86,9 @@ const goTime = (path: string) => {
     justify-content: space-between;
     gap: 30px;
     transition: 0.3s ease;
-    &:hover {
-      background: rgba(10, 113, 37, 0.8);
-    }
+    background: rgba(10, 113, 37, 0.8);
   }
   &__button-next {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
   }
 
   &__button-btn-next {
